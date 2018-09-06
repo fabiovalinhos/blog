@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog teste fabiovalinhos</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <!-- Cabeçalho do blog -->
+    <div class="bg-primary text-white text-center text center mb-4 p-4">
+      <%= link_to root_path, class: "text-white" do %>
+        <h1 class="display-4">Bruce Fletcher Blog</h1>
+      <% end %>
+
+      <p class="lead">
+        Blog criado para estudo de Ruby on Rails e Bootstrap
+      </p>
+    </div>
+
+    <div class="container">
+      <!-- Mensagens do controller usando o flash -->
+      <% flash.each do |type, message| %>
+        <div class="alert alert-<%= type == 'alert' ? 'danger' : 'success' %> alert-dismissible fade show" role="alert">
+          <%= message %>
+
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+
+      <!-- Conteúdo -->
+      <%= yield %>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="bg-primary text-white text-center text-current mt-5 p-4">
+      Copyright &copy fabiovalinhos <%= Date.current.year %>
+    </footer>
+
+  </body>
+</html>
